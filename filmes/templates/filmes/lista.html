@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Filmes Cadastrados</title>
+        <link rel="stylesheet" href="{% static 'filmes/style.css' %}">
+    </head>
+<body>
+    <h1>Lista de Filmes</h1>
+    <a href="{% url 'criar_filme' %}">Novo Filme</a>
+    <div class="lista-filmes">
+        {% for filme in filmes %}
+            <div class="filme">
+                <img src={{filme.capa}}>
+                <p>{{ filme.titulo }} ({{ filme.ano }})</p>
+                <a href="{% url 'atualizar_filme' filme.pk %}">Editar</a>
+                <a href="{% url 'deletar_filme' filme.pk %}">Excluir</a>
+            </div>
+            {% empty %}
+            <p>Nenhum filme cadastrado</p>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>
